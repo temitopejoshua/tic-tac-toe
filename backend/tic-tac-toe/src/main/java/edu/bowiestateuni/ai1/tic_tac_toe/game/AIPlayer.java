@@ -48,7 +48,6 @@ public class AIPlayer {
 
             // Evaluate the move using minimax
             int score = minimax(board, 0, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
-
             // Undo the move
             board.undoMove(move[0], move[1]);
 
@@ -65,8 +64,8 @@ public class AIPlayer {
     private int minimax(Board board, int depth, boolean isMaximizing, int alpha, int beta) {
         // Check for terminal states (win, lose, draw)
         char winner = board.checkWinner();
-        if (winner == aiMarker) return 10 - depth; // AI wins
-        if (winner == humanMarker) return depth - 10; // Human wins
+        if (winner == aiMarker) return 20 - depth; // AI wins
+        if (winner == humanMarker) return depth - 20; // Human wins
         if (board.isFull()) return 0; // Draw
 
         if (isMaximizing) {

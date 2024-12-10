@@ -1,4 +1,4 @@
-const BASE_URL = 'http://10.0.0.192:5050'
+const BASE_URL = 'http://192.168.216.125:5050'
 
 export const resetGame = async (difficultyLevel) =>  await fetch(BASE_URL + '/api/v1/game/tic-tac-toe/reset?difficultyLevel=' + difficultyLevel, {
     method: 'PUT'

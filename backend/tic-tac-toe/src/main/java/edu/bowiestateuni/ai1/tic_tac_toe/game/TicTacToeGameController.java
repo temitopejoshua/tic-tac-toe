@@ -19,10 +19,10 @@ public class TicTacToeGameController {
     private PlayGameResponse lastResponse = null;
 
     @PutMapping("/reset")
-    public ResponseEntity<String> resetGame( @RequestParam("difficultyLevel")  DifficultyTypeConstant difficultyLevel) {
+    public ResponseEntity<APIResponse> resetGame( @RequestParam("difficultyLevel")  DifficultyTypeConstant difficultyLevel) {
         log.info("Reset game request with difficulty level {} ", difficultyLevel);
         resetBoardAndAI(difficultyLevel);
-        return ResponseEntity.ok("Game reset successful");
+        return ResponseEntity.ok(new APIResponse("Game reset successfully with difficulty level " + difficultyLevel));
     }
 
     @PostMapping(value = "/play", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -131,4 +131,5 @@ public class TicTacToeGameController {
     private int convertAIMoveToIndex(int[] aiMove) {
         return GameMoveUtils.MOVE_MAP_REVERSE.get(String.format("%d%d", aiMove[0], aiMove[1]));
     }
+    public record APIResponse(String message){}
 }
